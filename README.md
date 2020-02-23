@@ -3,19 +3,6 @@
 This is a meta repository that hosts only the top level makefile and scripts
 that builds risc-v based Linux kernel suitable for running on the QEMU emulator
 
-
-# Usage
-
-## Download, build tools and images
-
-`$ make`
-
-## Run # Riscv-builder
-
-This is a meta repository that hosts only the top level makefile and scripts
-that builds risc-v based Linux kernel suitable for running on the QEMU emulator
-
-
 # Usage
 
 1. Download and build
