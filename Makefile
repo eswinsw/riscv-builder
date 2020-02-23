@@ -2,6 +2,11 @@
 .PHONY: all
 all:  install-qemu install-buildroot
 
+# For building a particular rlease, please define the BR_TAG to a release tag
+# By default, BR_TAG is left undefined, meaning we will checkout the
+# buildroot tree from the tip of eswin branch.
+BR_TAG = ew-0.1  # Baseline, busybox only
+
 ###########################################
 # QEMU
 ###########################################
@@ -27,8 +32,18 @@ install-qemu: bin/qemu-system-riscv64
 BR-IMAGES = Image fw_jump.elf rootfs.ext2
 build_targets = $(addprefix src/buildroot/output/images/,$(BR-IMAGES))
 
+.PHONY: co-br-tag
+ifneq ($(BR_TAG),)
+co-br-tag:
+	(cd src/buildroot; git checkout tags/$(BR_TAG) -b $(BR_TAG))
+else
+co-br-tag:
+	@:
+endif
+
 src/buildroot:
 	(cd src; git clone --single-branch --branch eswin  https://github.com/eswinsw/buildroot.git)
+	$(MAKE) co-br-tag
 
 $(build_targets): | src/buildroot
 	(cd src/buildroot; make qemu_riscv64_virt_defconfig && make)
