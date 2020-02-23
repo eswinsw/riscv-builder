@@ -19,6 +19,7 @@ that builds risc-v based Linux kernel suitable for running on the QEMU emulator.
     `riscv-builder$   make run`
     * Boot Linux in CLI mode
     * Boot Seqneuse are OPENSBI + Linux
+    * Use CTRL-A X to quit QEMU 
 
 
 ## Limitation
