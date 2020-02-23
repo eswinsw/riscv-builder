@@ -28,7 +28,7 @@ BR-IMAGES = Image fw_jump.elf rootfs.ext2
 build_targets = $(addprefix src/buildroot/output/images/,$(BR-IMAGES))
 
 src/buildroot:
-	(cd src; git clone https://github.com/buildroot/buildroot.git)
+	(cd src; git clone --single-branch --branch eswin  https://github.com/eswinsw/buildroot.git)
 
 $(build_targets): | src/buildroot
 	(cd src/buildroot; make qemu_riscv64_virt_defconfig && make)
@@ -55,3 +55,9 @@ run:
 	 -device virtio-net-device,netdev=net0 \
 	 -nographic \
 	)
+
+
+.PHONY: clean
+clean:
+	rm -rf src/buildroot
+	rm -rf src/qemu
