@@ -12,7 +12,7 @@ all:  install-qemu install-buildroot
 ###########################################
 
 src/qemu:
-	(cd src; git clone https://github.com/qemu/qemu.git)
+	(cd src; git clone --branch eswin --single-branch https://github.com/eswinsw/qemu.git)
 
 src/qemu/build: | src/qemu
 	mkdir -p src/qemu/build
