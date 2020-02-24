@@ -41,18 +41,20 @@ co-br-tag:
 	@:
 endif
 
+BR-CONFIG:=$(abspath configs/qemu_riscv64_virt_ssh)
+
 src/buildroot:
 	(cd src; git clone --single-branch --branch eswin  https://github.com/eswinsw/buildroot.git)
 	@$(MAKE) co-br-tag
 
 $(build_targets): | src/buildroot
-	(cd src/buildroot; make qemu_riscv64_virt_defconfig && make)
+	(cd src/buildroot; make defconfig BR2_DEFCONFIG=$(BR-CONFIG) && make)
 
 .PHONY: install-buildroot
 install-buildroot:  | $(build_targets)
 	mkdir -p bin/buildroot
 	cp $(build_targets) bin/buildroot
-	
+
 
 ###########################################
 # Boot up RISC-V virt machine in QEMU
@@ -66,7 +68,7 @@ run:
 	 -append 'rootwait root=/dev/vda ro' \
 	 -drive file=buildroot/rootfs.ext2,format=raw,id=hd0 \
 	 -device virtio-blk-device,drive=hd0 \
-	 -netdev user,id=net0 \
+	 -netdev user,id=net0,hostfwd=tcp::2222-:22 \
 	 -device virtio-net-device,netdev=net0 \
 	 -nographic \
 	)
