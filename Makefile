@@ -41,7 +41,7 @@ co-br-tag:
 	@:
 endif
 
-BR-CONFIG:=$(abspath configs/qemu_riscv64_virt_ssh)
+BR-CONFIG:=$(abspath configs/qemu_riscv64_virt_dev)
 
 src/buildroot:
 	(cd src; git clone --single-branch --branch eswin  https://github.com/eswinsw/buildroot.git)
