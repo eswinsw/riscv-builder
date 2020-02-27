@@ -23,7 +23,7 @@ that builds risc-v based Linux kernel suitable for running on the QEMU emulator.
     * Use CTRL-A X to quit QEMU 
 
 1. Ssh into Linux
-    * User `root` is allowed ssh from host into the RISC-V server. (Password: `root`)
+    * User `root` is allowed ssh from host into the RISC-V server. (Password: `riscv`)
     * Host port 2222 is mapped into guest port 22 (`ssh root@localhost -p 2222`)
 
 ## Limitation
