@@ -15,16 +15,23 @@ that builds risc-v based Linux kernel suitable for running on the QEMU emulator.
      * Source code checked out by git are under the `riscv-builder/src` directory
      * Binaries are installed under the `riscv-builder/bin` directory
 
-1. Boot Linux
-    `riscv-builder$   make run`
+1. Boot buildroot Linux
+    `riscv-builder$   make run-br`
     * Boot Linux in CLI mode
     * Boot sequence are OPENSBI + Linux
-    * Login as the `root` user. (Password: `root`)
+    * Login as the `root` user. (Password: `riscv`)
     * Use CTRL-A X to quit QEMU 
 
-1. Ssh into Linux
+1. Ssh into buildroot Linux
     * User `root` is allowed ssh from host into the RISC-V server. (Password: `riscv`)
     * Host port 2222 is mapped into guest port 22 (`ssh root@localhost -p 2222`)
+
+1. Run Fedora Linux
+    `riscv-builder$ make run-fedora`
+    * Using fedora images referenced in Fu Wei's talk on 2019 RISC-V Summit
+    * Download a large Fedora rootfs the first time this command runs.
+    * Cli mode only
+    * Known issues: `dnf install` does not work
 
 ## Limitation
     * Source code updates are not properly supported

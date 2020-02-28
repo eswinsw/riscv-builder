@@ -16,13 +16,19 @@ src/qemu:
 
 src/qemu/build: | src/qemu
 	mkdir -p src/qemu/build
-	(cd src/qemu/build; ../configure --target-list=riscv64-softmmu && make)
+	(cd src/qemu/build; \
+	../configure --target-list=riscv64-softmmu --enable-vnc --enable-sdl; \
+	make )
 	
 bin/qemu-system-riscv64: | src/qemu/build
 	cp src/qemu/build/riscv64-softmmu/qemu-system-riscv64 $@
 
+bin/pc-bios: | src/qemu/build
+	mkdir -p bin/pc-bios
+	cp -r src/qemu/build/pc-bios bin
+
 .PHONY: install-qemu
-install-qemu: bin/qemu-system-riscv64
+install-qemu: bin/qemu-system-riscv64 bin/pc-bios
 	
 
 ###########################################
@@ -56,9 +62,9 @@ install-buildroot:  | $(build_targets)
 	cp $(build_targets) bin/buildroot
 
 
-###########################################
-# Boot up RISC-V virt machine in QEMU
-###########################################
+######################################################
+# Boot up RISC-V virt machine in QEMU with buildroot
+######################################################
 .PHONY: run-br
 run-br:
 	( \
@@ -73,7 +79,9 @@ run-br:
 	 -nographic \
 	)
 
-
+######################################################
+# Boot up RISC-V virt machine in QEMU with Fedora OS
+######################################################
 .PHONY: run-fedora
 run-fedora:
 	$(MAKE) -C fedora
