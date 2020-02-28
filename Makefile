@@ -59,8 +59,8 @@ install-buildroot:  | $(build_targets)
 ###########################################
 # Boot up RISC-V virt machine in QEMU
 ###########################################
-.PHONY: run
-run:
+.PHONY: run-br
+run-br:
 	( \
 	 cd bin; \
 	 ./qemu-system-riscv64 -M virt -kernel ./buildroot/fw_jump.elf \
@@ -74,7 +74,6 @@ run:
 	)
 
 
-.PHONY: clean
-clean:
-	rm -rf src/buildroot
-	rm -rf src/qemu
+.PHONY: run-fedora
+run-fedora:
+	$(MAKE) -C fedora
