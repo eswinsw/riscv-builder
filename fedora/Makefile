@@ -39,3 +39,22 @@ run:  | $(IMAGES)
 	 -nographic \
 	)
 
+
+.PHONY: run-gui
+run-gui:  | $(IMAGES)
+	( \
+	 cd ../bin; \
+	 ./qemu-system-riscv64 -M virt  -smp 2 -m 1G \
+	 -kernel $(INSTALL-DIR)/fw_payload-uboot-qemu-virt-smode.elf \
+	 -object rng-random,filename=/dev/urandom,id=rng0 \
+	 -device virtio-rng-device,rng=rng0 \
+	 -device virtio-blk-device,drive=hd0 \
+	 -drive file=$(INSTALL-DIR)/fedora.rootfs,format=raw,id=hd0 \
+	 -device virtio-net-device,netdev=usernet \
+	 -device virtio-gpu-pci \
+	 -device virtio-keyboard-pci \
+	 -device virtio-mouse-pci \
+	 -netdev user,id=usernet,id=net0,hostfwd=tcp::2222-:22 \
+	 -display gtk \
+	)
+

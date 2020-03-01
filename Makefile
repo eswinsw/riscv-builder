@@ -84,4 +84,8 @@ run-br:
 ######################################################
 .PHONY: run-fedora
 run-fedora:
-	$(MAKE) -C fedora
+	$(MAKE) -C fedora run
+
+.PHONY: run-fedora-gui
+run-fedora-gui:
+	$(MAKE) -C fedora run-gui

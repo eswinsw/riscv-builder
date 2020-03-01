@@ -31,7 +31,16 @@ that builds risc-v based Linux kernel suitable for running on the QEMU emulator.
     * Using fedora images referenced in Fu Wei's talk on 2019 RISC-V Summit
     * Download a large Fedora rootfs the first time this command runs.
     * Cli mode only
-    * Known issues: `dnf install` does not work
+    * Known issue: `dnf install` does not work. Can be fixed by editing /etc/yum.repos.d/fedora-rsicv.repo file to fix the repo location.
+
+1. Run Fedora Linux GUI
+    `riscv-builder$ make run-fedora-gui`
+    * Similar to make run-fedora, expect running qemu with the virtio-gpu device and friends
+    * Use `dnf install xclock` to pull down X server packages
+    * `startx` starts screen in graphisc mode, but exist quickly without obvious error messages.
+    * Boot console switched into the graphics mode, virtio-gpu kernel is loaded correctly. `dmesg` output confirmed the device is detected.
+    * Known issue: Can't launch X windows using GPU
+
 
 ## Limitation
     * Source code updates are not properly supported
