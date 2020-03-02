@@ -43,6 +43,12 @@ that builds risc-v based Linux kernel suitable for running on the QEMU emulator.
     `riscv-builder$ make run-debian`
     * Using Debian image built by Carlos Eduardo for experimenting with docker
     * https://medium.com/@carlosedp/docker-containers-on-risc-v-architecture-5bc45725624b
+    * apt-get install works out of box. Should be able to install most of the packages
+    * Docker installs and runs fine. Following the instructions from Carlos Eduardo
+    * Docker pull and execute image works
+    * The instruction for installing golang package is out of date. Golang 1.14 has released with experimental support for RISC-V
+    * Installing golang 1.14 per instruction works. It can natively compile go source code. Example hello world program runs fine.
+      
 
 ## Limitation
     * Source code updates are not properly supported
