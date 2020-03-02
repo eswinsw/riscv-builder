@@ -36,9 +36,8 @@ that builds risc-v based Linux kernel suitable for running on the QEMU emulator.
 1. Run Fedora Linux GUI
     `riscv-builder$ make run-fedora-gui`
     * Similar to make run-fedora, expect running qemu with the virtio-gpu device and friends
-    * Use `dnf install xclock fwm xterm` to pull down X server packages
+    * Use `dnf install xclock twm xterm` to pull down X server packages
     * `startx` starts screen in graphisc mode.
-    * Known issues: Input devices (Keyboard and mouse) are not working correctly.
 
 1. Run Debian Linux 
     `riscv-builder$ make run-debian`
