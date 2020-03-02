@@ -39,7 +39,6 @@ run:  | $(IMAGES)
 	 -nographic \
 	)
 
-
 .PHONY: run-gui
 run-gui:  | $(IMAGES)
 	( \
@@ -51,9 +50,10 @@ run-gui:  | $(IMAGES)
 	 -device virtio-blk-device,drive=hd0 \
 	 -drive file=$(INSTALL-DIR)/fedora.rootfs,format=raw,id=hd0 \
 	 -device virtio-net-device,netdev=usernet \
-	 -device virtio-gpu-pci \
+	 -device virtio-gpu-pci,xres=680,yres=480 \
 	 -device virtio-keyboard-pci \
 	 -device virtio-mouse-pci \
+	 -device virtio-tablet-pci \
 	 -netdev user,id=usernet,id=net0,hostfwd=tcp::2222-:22 \
 	 -display gtk \
 	)
