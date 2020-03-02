@@ -40,6 +40,10 @@ that builds risc-v based Linux kernel suitable for running on the QEMU emulator.
     * `startx` starts screen in graphisc mode.
     * Known issues: Input devices (Keyboard and mouse) are not working correctly.
 
+1. Run Debian Linux 
+    `riscv-builder$ make run-debian`
+    * Using Debian image built by Carlos Eduardo for experimenting with docker
+    * https://medium.com/@carlosedp/docker-containers-on-risc-v-architecture-5bc45725624b
 
 ## Limitation
     * Source code updates are not properly supported

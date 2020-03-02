@@ -89,3 +89,11 @@ run-fedora:
 .PHONY: run-fedora-gui
 run-fedora-gui:
 	$(MAKE) -C fedora run-gui
+
+
+######################################################
+# Boot up RISC-V virt machine in QEMU with Debian OS
+######################################################
+.PHONY: run-debian
+run-debian:
+	$(MAKE) -C debian run
