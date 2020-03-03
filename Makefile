@@ -97,3 +97,10 @@ run-fedora-gui:
 .PHONY: run-debian
 run-debian:
 	$(MAKE) -C debian run
+
+######################################################
+# Boot up RISC-V virt machine in QEMU with yacto OS
+######################################################
+.PHONY: run-yacto
+run-yacto:
+	$(MAKE) -C yacto run

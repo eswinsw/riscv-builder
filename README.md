@@ -49,9 +49,9 @@ that builds risc-v based Linux kernel suitable for running on the QEMU emulator.
     * The instruction for installing golang package is out of date. Golang 1.14 has released with experimental support for RISC-V
     * Installing golang 1.14 per instruction works. It can natively compile go source code. Example hello world program runs fine.
       
+1. Run Yacto Linux 
+    * `riscv-builder$ cd yacto; make init; make build-qemu` to build the image
+    * `riscv-builder$ make run-yacto` to run yacto Linux in CLI mode
 
 ## Limitation
     * Source code updates are not properly supported
-
-## TODO
-    * Linux GUI support
