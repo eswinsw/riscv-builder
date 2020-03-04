@@ -17,7 +17,9 @@ src/qemu:
 src/qemu/build: | src/qemu
 	mkdir -p src/qemu/build
 	(cd src/qemu/build; \
-	../configure --target-list=riscv64-softmmu --enable-vnc --enable-sdl; \
+	../configure --target-list=riscv64-softmmu --enable-vnc --enable-sdl \
+		     --enable-opengl --enable-virglrenderer \
+		     --audio-drv-list=pa; \
 	make )
 	
 bin/qemu-system-riscv64: | src/qemu/build
