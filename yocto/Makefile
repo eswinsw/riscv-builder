@@ -26,13 +26,14 @@ shell:
 	 bash \
 	 )
 
-# Run yacto in cli mode
+# Run yocto in cli mode
 .PHONY: run
 run:
 	(. ./meta-riscv/setup.sh; \
 	 MACHINE=qemuriscv64 runqemu nographic \
 	 )
 
+# Run yocto GUI using weston/wayland
 QEMU-BIN := $(abspath ../bin/qemu-system-riscv64)
 .PHONY: run-gui
 run-gui:  | $(IMAGES)

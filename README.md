@@ -30,14 +30,14 @@ that builds risc-v based Linux kernel suitable for running on the QEMU emulator.
     `riscv-builder$ make run-fedora`
     * Using fedora images referenced in Fu Wei's talk on 2019 RISC-V Summit
     * Download a large Fedora rootfs the first time this command runs.
-    * Cli mode only
-    * Known issue: `dnf install` does not work. Can be fixed by editing /etc/yum.repos.d/fedora-rsicv.repo file to fix the repo location.
+    * CLI mode only
+    * Known issue: `dnf install` does not work. Can be fixed by editing /etc/yum.repos.d/fedora-riscv.repo file to fix the repo location.
 
 1. Run Fedora Linux GUI
     `riscv-builder$ make run-fedora-gui`
     * Similar to make run-fedora, expect running qemu with the virtio-gpu device and friends
     * Use `dnf install xclock twm xterm` to pull down X server packages
-    * `startx` starts screen in graphisc mode.
+    * `startx` starts screen in graphics mode.
 
 1. Run Debian Linux 
     `riscv-builder$ make run-debian`
@@ -49,9 +49,10 @@ that builds risc-v based Linux kernel suitable for running on the QEMU emulator.
     * The instruction for installing golang package is out of date. Golang 1.14 has released with experimental support for RISC-V
     * Installing golang 1.14 per instruction works. It can natively compile go source code. Example hello world program runs fine.
       
-1. Run Yacto Linux 
-    * `riscv-builder$ cd yacto; make init; make build-qemu` to build the image
-    * `riscv-builder$ make run-yacto` to run yacto Linux in CLI mode
+1. Run Yocto Linux 
+    * `riscv-builder$ cd yocto; make init; make build-riscv-cli` to build the image
+    * `riscv-builder$ make run-yocto` to run yocto Linux in CLI mode
 
-## Limitation
-    * Source code updates are not properly supported
+1. Run Yocto Linux GUI
+    * `riscv-builder$ cd yocto; make init; make build-riscv-gui` to build the image
+    * `riscv-builder$ make run-yocto-gui` to run yocto Linux in GUI mode with weston/wayland

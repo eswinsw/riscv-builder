@@ -101,8 +101,12 @@ run-debian:
 	$(MAKE) -C debian run
 
 ######################################################
-# Boot up RISC-V virt machine in QEMU with yacto OS
+# Boot up RISC-V virt machine in QEMU with yocto OS
 ######################################################
-.PHONY: run-yacto
+.PHONY: run-yocto
 run-yacto:
-	$(MAKE) -C yacto run
+	$(MAKE) -C yocto run
+
+.PHONY: run-yocto-gui
+run-yocto-gui:
+	$(MAKE) -C yocto run
