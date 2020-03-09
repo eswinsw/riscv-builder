@@ -28,10 +28,9 @@ that builds risc-v based Linux kernel suitable for running on the QEMU emulator.
 
 1. Run Fedora Linux
     `riscv-builder$ make run-fedora`
-    * Using fedora images referenced in Fu Wei's talk on 2019 RISC-V Summit
+    * Using fedora images 2020/01/08 release.
     * Download a large Fedora rootfs the first time this command runs.
     * CLI mode only
-    * Known issue: `dnf install` does not work. Can be fixed by editing /etc/yum.repos.d/fedora-riscv.repo file to fix the repo location.
 
 1. Run Fedora Linux GUI
     `riscv-builder$ make run-fedora-gui`
