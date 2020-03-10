@@ -3,7 +3,7 @@
 all: download
 
 INSTALL-DIR :=$(abspath ../bin/fedora)
-IMAGES := $(INSTALL-DIR)/fedora.rootfs $(INSTALL-DIR)/Fedora-Developer-Rawhide-20200108.n.0-fw_payload-uboot-qemu-virt-smode.elf
+IMAGES := $(INSTALL-DIR)/fedora.rootfs $(INSTALL-DIR)/fw_payload-uboot-qemu-virt-smode.elf
 UBOOT-IMAGE := https://dl.fedoraproject.org/pub/alt/risc-v/repo/virt-builder-images/images/Fedora-Developer-Rawhide-20200108.n.0-fw_payload-uboot-qemu-virt-smode.elf
 ROOTFS-IMAGE := https://dl.fedoraproject.org/pub/alt/risc-v/repo/virt-builder-images/images/Fedora-Developer-Rawhide-20200108.n.0-sda.raw.xz
 
