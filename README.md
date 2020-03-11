@@ -31,7 +31,8 @@ that builds risc-v based Linux kernel suitable for running on the QEMU emulator.
     * Using fedora images 2020/01/08 release.
     * Download a large Fedora rootfs the first time this command runs.
     * CLI mode only
-    * Password: `fedora_rocks!`. SSH login as root is disabled by default.
+    * Login as root: `root:fedora_rocks!`. Note, SSH login as root is disabled by default.
+    * Login as a user: `riscv:fedora_rocks!`.
 
 1. Run Fedora Linux GUI
     `riscv-builder$ make run-fedora-gui`
