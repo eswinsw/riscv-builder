@@ -43,7 +43,7 @@ run:  | $(IMAGES)
 run-gui:  | $(IMAGES)
 	( \
 	 cd ../bin; \
-	 ./qemu-system-riscv64 -M virt  -smp 2 -m 1G \
+	 ./qemu-system-riscv64 -M virt  -smp 2 -m 4G \
 	 -kernel $(INSTALL-DIR)/fw_payload-uboot-qemu-virt-smode.elf \
 	 -object rng-random,filename=/dev/urandom,id=rng0 \
 	 -device virtio-rng-device,rng=rng0 \

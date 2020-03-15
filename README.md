@@ -39,6 +39,8 @@ that builds risc-v based Linux kernel suitable for running on the QEMU emulator.
     * Similar to make run-fedora, expect running qemu with the virtio-gpu device and friends
     * Use `dnf install xclock twm xterm` to pull down X server packages
     * `startx` starts screen in graphics mode.
+    * `dnf install @xfce-desktop-environment --skip-broken` to install Xfce. Use `xinit /usr/bin/xfce4-session` to launch the Xfce desktop.
+    * Running OpenGL program will cause LLVM error. Recompiling mesa3d with Xlib driver is a fix. Use the fedora/mesa.sh script to compile and install mesa3d.
 
 1. Run Debian Linux 
     `riscv-builder$ make run-debian`
