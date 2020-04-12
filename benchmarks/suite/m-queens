@@ -1,0 +1,24 @@
+bmname="m-queens"
+source=("https://github.com/sudden6/m-queens/archive/v1.2.tar.gz")
+arguments=('15' '17')
+
+build() {
+    cd m-queens-1.2
+    CFLAGS="$CFLAGS -O2"
+    g++ -fopenmp $CFLAGS main.c -o m-queens.bin
+}
+
+install() {
+    cd m-queens-1.2
+    cp m-queens.bin $pkgdir
+}
+
+run_benchmark() {
+    NUM_CPU_CORES=8
+    OMP_NUM_THREADS=$NUM_CPU_CORES m-queens.bin $@
+}
+
+parse_result() {
+    result=$(cat $LOG_FILE | awk '{print $11 " " $12}')
+    echo "Argument $@ $result"
+}

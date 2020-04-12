@@ -1,0 +1,19 @@
+bmname="openssl"
+distro="openssl"
+source=("https://github.com/openssl/openssl/archive/OpenSSL_1_1_1.tar.gz")
+argument=('rsa4096')
+
+build() {
+    cd openssl-OpenSSL_1_1_1
+    ./config no-zlib
+    make -j $(nproc)
+}
+
+install() {
+    cd openssl-OpenSSL_1_1_1
+    cp apps/openssl $pkgdir
+}
+
+run_benchmark() {
+    openssl speed
+}

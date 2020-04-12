@@ -1,0 +1,28 @@
+bmname="povray"
+# deps="boost"
+distro="povray"
+source=("https://github.com/POV-Ray/povray/archive/v3.7.0.8.tar.gz")
+
+build() {
+    cd povray-3.7.0.8/unix/
+    autoupdate
+    ./prebuild.sh
+    cd ..
+    automake --add-missing
+    LIBS="-lboost_system" ./configure COMPILED_BY="qemu riscv" --with-boost-thread=boost_thread
+    make -j $(nproc)
+}
+
+install() {
+    cd povray-3.7.0.8
+    cp unix/povray $pkgdir
+}
+
+run_benchmark() {
+    echo 1 | povray -benchmark
+}
+
+parse_result() {
+    result=$(cat $LOG_FILE | grep "Trace Time" | awk '{print substr($9,2);}')
+    echo "benchmark result $result seconds"
+}

@@ -1,0 +1,27 @@
+bmname="iperf"
+distro="iperf"
+source="https://downloads.es.net/pub/iperf/iperf-3.7.tar.gz"
+arguments=("5")
+
+build() {
+    cd iperf-3.7/
+    CFLAGS="$CFLAGS -O3"
+    rm -f config/config.guess
+    cp -f /usr/share/automake-$(automake --version|head -n 1|awk '{print substr($4, 1, 4)}')/config.guess config
+    ./configure --prefix=$pkgdir CFLAGS="$CFLAGS"
+    make -j $(nproc)
+}
+
+install() {
+    cd iperf-3.7/
+    make install
+    ln -s $pkgdir/bin/iperf3 $pkgdir/iperf3
+}
+
+run_benchmark() {
+    iperf3 -s &
+    IPERF_SERVER_PID=$!
+    sleep 3
+    iperf3 -c localhost -P $@
+    kill $IPERF_SERVER_PID
+}

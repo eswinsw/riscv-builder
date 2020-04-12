@@ -1,0 +1,23 @@
+bmname="ffmpeg"
+source=("http://ffmpeg.org/releases/ffmpeg-4.0.2.tar.bz2" "http://samples.ffmpeg.org/V-codecs/h264/HD2-h264.ts")
+
+build() {
+    mkdir ffmpeg_/
+    cd ffmpeg-4.0.2/
+    ./configure --disable-zlib --disable-doc --prefix=$pkgdir
+    make -j $(nproc)
+}
+
+install() {
+    ln -s $startdir/HD2-h264.ts $pkgdir/HD2-h264.ts
+    cd ffmpeg-4.0.2/
+    make install
+}
+
+run_benchmark() {
+    time ffmpeg -i HD2-h264.ts -f rawvideo -threads $(nproc) -y -target ntsc-dv /dev/null
+}
+
+parse_result() {
+    tail -n 3 $LOG_FILE
+}
